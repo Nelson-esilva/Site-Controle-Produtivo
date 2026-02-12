@@ -2,26 +2,86 @@
 
 ## Descrição
 
-Este projeto consiste em um sistema web desenvolvido para o controle de produção em uma fábrica de plásticos. O objetivo principal é fornecer uma plataforma intuitiva para o gerenciamento e monitoramento da produção, possibilitando a visualização de relatórios e gráficos baseados em dados de produção.
+Este projeto é um sistema web para controle de produção em uma fábrica de plásticos.  
+Ele permite gerenciar e monitorar a produção, visualizando relatórios e gráficos baseados em dados reais.
 
-https://tela-de-login-html.onrender.com
+Aplicação em produção: `https://tela-de-login-html.onrender.com`
 
 ## Tecnologias Utilizadas
 
-- **Python**: Utilizado como linguagem de programação principal no backend, oferecendo a lógica necessária para o funcionamento do sistema.
-- **Flask**: Framework leve para Python que gerencia o servidor web e as rotas do aplicativo.
-- **JavaScript**: Implementado no frontend para adicionar interatividade e dinamismo às páginas.
-- **HTML & CSS**: Usados para a estrutura e estilização das páginas web, garantindo uma interface amigável e responsiva.
-- **Banco de Dados**: Utilizado para armazenar e gerenciar os dados de produção, proporcionando uma base sólida para consultas e relatórios.
+- **Backend (Python/Flask)**: Lógica de negócio, autenticação, rotas e integração com o banco de dados.
+- **Flask-SQLAlchemy**: Mapeamento objeto-relacional (ORM) para o banco SQLite.
+- **Flask-Login**: Gerenciamento de sessões e autenticação de usuários.
+- **Pandas & Plotly**: Tratamento de dados e geração de gráficos.
+- **Frontend (HTML, CSS, JavaScript)**: Interface do usuário e interações.
+- **Chart.js (via `node_modules`)**: Gráficos no frontend.
 
-## Funcionalidades
+## Estrutura de Pastas
 
-- **Dashboard**: Visualização geral do status da produção, com gráficos e tabelas atualizados em tempo real.
-- **Relatórios Personalizados**: Geração de relatórios detalhados com base nas preferências do usuário, permitindo análise aprofundada dos dados.
-- **Interface Intuitiva**: Design responsivo e fácil de usar, com filtros e opções de personalização para melhor adaptação às necessidades do usuário.
+- `app.py` — Aplicação Flask principal (rotas, modelos e lógica).
+- `templates/` — Páginas HTML (login, registro, dashboard, relatórios, etc.).
+- `static/`  
+  - `static/style.css`, `static/login.css`, `static/relatorio.css`, etc. — Estilos da interface.  
+  - `static/script.js` — Lógica de gráficos usando Chart.js.
+- `setup.sql` — Script SQL auxiliar para configuração inicial (se necessário).
+- `requirements.txt` — Dependências Python.
+- `package.json` / `package-lock.json` — Dependências JavaScript (Chart.js).
+- `venv/` — Ambiente virtual Python (ignorado pelo Git).
+- `node_modules/` — Dependências JavaScript (ignorado pelo Git).
 
-## Estrutura do Projeto
+## Como Rodar o Projeto Localmente
 
-- **Backend**: Implementado com Flask, gerencia a lógica de aplicação e a comunicação com o banco de dados.
-- **Frontend**: Desenvolvido com HTML, CSS e JavaScript, proporciona uma experiência de usuário interativa e visualmente atraente.
-- **Banco de Dados**: Utilizado para armazenar dados relacionados à produção, garantindo a integridade e a eficiência na gestão dos dados.
+### 1. Pré-requisitos
+
+- **Python 3.10+**
+- **Node.js + npm** (apenas se precisar reinstalar o Chart.js)
+
+### 2. Clonar o repositório
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd Site-de-Controle-Produtivo
+```
+
+### 3. Criar e ativar o ambiente virtual
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/WSL
+# ou, no Windows (PowerShell):
+# venv\Scripts\Activate.ps1
+```
+
+### 4. Instalar dependências Python
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. (Opcional) Instalar dependências JavaScript
+
+```bash
+npm install
+```
+
+### 6. Executar a aplicação
+
+```bash
+python app.py
+```
+
+Acesse no navegador: `http://127.0.0.1:5000`
+
+## Funcionalidades Principais
+
+- **Autenticação de Usuários**: Login, registro e controle de sessão.
+- **Cadastro de Dados de Produção**: Registro de informações de produção e ocorrências.
+- **Consulta com Filtros**: Filtros diários, mensais e por intervalo de datas.
+- **Relatórios e Gráficos**: Geração de gráficos usando Plotly (backend) e Chart.js (frontend).
+
+## Boas Práticas e Organização
+
+- Arquivos de código Python concentrados em `app.py` (futuramente podem ser divididos em módulos).
+- Arquivos estáticos (`CSS` e `JS`) dentro de `static/`.
+- Templates Jinja2 (`HTML`) dentro de `templates/`.
+- Arquivos gerados localmente (`venv/`, `node_modules/`, bancos `.db`) são ignorados pelo Git via `.gitignore`.

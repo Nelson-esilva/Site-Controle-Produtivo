@@ -4,22 +4,32 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Virtual environment
+# Virtual environments
 venv/
 env/
+.venv/
+
+# Node modules
+node_modules/
+
+# Databases e arquivos de dados locais
+*.db
+*.sqlite
+*.sql
 
 # Environment variables
 .env
-
-# MySQL
-*.sql
-*.sqlite
 
 # Flask
 instance/
 
 # Logs
 *.log
+
+# Cache e ferramentas de teste
+.pytest_cache/
+.mypy_cache/
+.cache/
 
 # IDEs and Editors
 .vscode/
